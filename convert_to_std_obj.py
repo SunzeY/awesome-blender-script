@@ -3,8 +3,8 @@
 Written by Zeyi Sun @3/9 2024
 
 Script to run within Blender to convert color on vertex .obj into standard .obj with unwrapped uv and .png texture file:
-1. unwrap uv with smart uv projection
-2. bake image texture and dump to .png texture_diffuse only
+1. unwrap uv with smart uv projection.
+2. bake image texture and dump to .png texture_diffuse only.
 
 Example usage
 blender-3.4.1-linux-x64/blender -b -P convert_to_std_obj.py -- --input_path output/chair/0/mesh.obj --output_path converted/chair
