@@ -18,7 +18,7 @@ try:
     dash_index = sys.argv.index("--")
 except ValueError as exc:
     raise ValueError("arguments must be preceded by '--'") from exc
-
+ 
 raw_args = sys.argv[dash_index + 1 :]
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_path", required=True, type=str)
@@ -90,7 +90,10 @@ for mat in obj.data.materials:
 os.makedirs(args.output_path, exist_ok=True)
 
 img.save_render(filepath=f'{args.output_path}/texture_kd.png')
-bpy.ops.export_scene.obj(filepath=f"{args.output_path}/mesh.obj")
+if bpy.app.version[0] >= 4:
+    bpy.ops.wm.obj_export(filepath=f"{args.output_path}/mesh.obj")
+else:
+    bpy.ops.export_scene.obj(filepath=f"{args.output_path}/mesh.obj")
 
 with open(f'{args.output_path}/mesh.mtl', 'a') as f:
     f.write('map_Kd texture_kd.png')
